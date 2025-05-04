@@ -49,11 +49,11 @@ export default function DomainsPage() {
 
  <div className='w-full mt-2 mb-4'>
  <Input
-            placeholder="Search domains..."
+ 
             prefix={<SearchOutlined />}
             allowClear
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full"
+            className="w-full text-white placeholder-gray-400 "
           />
  </div>
 

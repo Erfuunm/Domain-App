@@ -1,13 +1,41 @@
-import "./App.css";
+import { Provider } from 'react-redux'
+import { ConfigProvider, Layout } from 'antd'
+import { store } from './store/store'
+import Sidebar from './components/Layout/Sidebar'
+import DomainsPage from './pages/DomainsPage'
 
 function App() {
   return (
-    <main className="flex justify-center gap-4 flex-col min-h-screen">
-      <h1 className="text-3xl text-center font-bold underline">React & Tailwind CSS Starter Pack</h1>
-      <p className="text-center text-xl">This is a starter pack for React & Tailwind CSS projects.</p>
-      <img src="https://bit.ly/3wsmzTy" alt="meme" className="mx-auto" />
-    </main>
-  );
+    <Provider store={store}>
+      <ConfigProvider theme={{
+        token: {
+          colorBgContainer: '#1f2937',
+          colorText: '#fff',
+          colorBorder: '#374151',
+          colorPrimary: '#6366f1',
+        },
+        components: {
+          Table: {
+            headerBg: '#1f2937',
+            headerColor: '#fff',
+            borderColor: '#374151',
+            rowHoverBg: '#374151',
+          },
+          Drawer: {
+            colorBgElevated: '#1f2937',
+            colorText: '#fff',
+          },
+        },
+      }}>
+        <Layout className="min-h-screen bg-gray-900">
+          <Sidebar />
+          <Layout.Content className="ml-64 p-8">
+            <DomainsPage />
+          </Layout.Content>
+        </Layout>
+      </ConfigProvider>
+    </Provider>
+  )
 }
 
-export default App;
+export default App

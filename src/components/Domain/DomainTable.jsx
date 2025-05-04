@@ -8,8 +8,8 @@ export default function DomainTable({ search, onEdit, onEditOpen }) {
   const [deleteDomain] = useDeleteDomainMutation()
 
   const filteredDomains = domains?.filter(domain => 
-    domain.domain.toLowerCase().includes(search.toLowerCase())
-  )
+    domain?.domain?.toLowerCase?.().includes(search.toLowerCase())
+  ) ?? [];
 
 
   const handleEdit = (record) => {
@@ -49,7 +49,7 @@ export default function DomainTable({ search, onEdit, onEditOpen }) {
       render: (active, record) => (
         <Switch 
           checked={active} 
-          onChange={checked => updateDomain({ id: record.id, isActive: checked })}
+       
         />
       ),
     },
@@ -64,18 +64,31 @@ export default function DomainTable({ search, onEdit, onEditOpen }) {
       title: 'Actions',
       key: 'actions',
       render: (_, record) => (
-        <div className="flex gap-2">
-          <Button 
-            icon={<EditOutlined />} 
-            onClick={() => handleEdit(record)}
-          />
-          <Popconfirm
-            title="Delete this domain?"
-            onConfirm={() => deleteDomain(record.id)}
-          >
-            <Button danger icon={<DeleteOutlined />} />
-          </Popconfirm>
-        </div>
+<div className="flex gap-2">
+  <Button 
+    icon={<EditOutlined />} 
+    onClick={() => handleEdit(record)}
+  />
+  <Popconfirm
+     title={
+        <span style={{ color: "black" }}> {/* Change color here */}
+          Delete this domain?
+        </span>
+      }
+    onConfirm={() => deleteDomain(record.id)}
+    overlayStyle={{
+      background: "", // bg-gray-800
+      color: "black",
+      border: "1px solid #374151", // border-gray-700
+      borderRadius: "8px",
+      padding: "16px",
+    }}
+    okButtonProps={{ style: { background: "#6b7280", borderColor: "#ef4444" } }} 
+    cancelButtonProps={{ style: { color: "white", borderColor: "#6b7280" , backgroundColor: "#ef4444" } }}
+  >
+    <Button danger icon={<DeleteOutlined />} />
+  </Popconfirm>
+</div>
       ),
     },
   ]

@@ -24,14 +24,19 @@ export default function DomainForm({ onFinish, initialValues }) {
         name="status"
         rules={[{ required: true, message: 'Please select status' }]}
       >
-        <Select
-          size="large"
-          options={[
-            { value: 'pending', label: 'Pending' },
-            { value: 'verified', label: 'Verified' },
-            { value: 'rejected', label: 'Rejected' },
-          ]}
-        />
+ <Select
+  size="large"
+  dropdownStyle={{
+    background: "#1f2937", // bg-gray-800
+    color: "black",
+    border: "1px solid #374151", // border-gray-700
+  }}
+  options={[
+    { value: 'pending', label: 'Pending' },
+    { value: 'verified', label: 'Verified' },
+    { value: 'rejected', label: 'Rejected' },
+  ]}
+/>
       </Form.Item>
 
       <Form.Item
